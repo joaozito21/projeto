@@ -1,0 +1,99 @@
+object FramedeCheckin: TFramedeCheckin
+  Size.Width = 1024.000000000000000000
+  Size.Height = 800.000000000000000000
+  Size.PlatformDefault = False
+  object Rectangle1: TRectangle
+    Align = Client
+    Opacity = 0.699999988079071100
+    Size.Width = 1024.000000000000000000
+    Size.Height = 800.000000000000000000
+    Size.PlatformDefault = False
+    object Layout1: TLayout
+      Align = Center
+      Size.Width = 500.000000000000000000
+      Size.Height = 450.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object Rectangle2: TRectangle
+        Align = Client
+        Fill.Color = claWhite
+        Size.Width = 500.000000000000000000
+        Size.Height = 450.000000000000000000
+        Size.PlatformDefault = False
+        object LytTotal: TLayout
+          Align = VertCenter
+          Position.Y = 82.000000000000000000
+          Size.Width = 500.000000000000000000
+          Size.Height = 300.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object Layout4: TLayout
+            Align = MostTop
+            Size.Width = 500.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object lb: TLabel
+              Align = Left
+              Size.Width = 273.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'nome do cliente'
+            end
+            object lbCli: TLabel
+              Align = Client
+              Size.Width = 227.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+        end
+        object Rectangle3: TRectangle
+          Align = MostTop
+          Fill.Color = claBlack
+          Size.Width = 500.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          object Label1: TLabel
+            Align = Client
+            StyledSettings = []
+            Size.Width = 500.000000000000000000
+            Size.Height = 65.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 20.000000000000000000
+            TextSettings.Font.StyleExt = {00020000000000000004000000}
+            TextSettings.FontColor = claWhite
+            TextSettings.HorzAlign = Center
+            Text = 'Reserva Op'#231#245'es'
+          end
+        end
+        object Layout3: TLayout
+          Align = Bottom
+          Position.Y = 400.000000000000000000
+          Size.Width = 500.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object CornerButton3: TCornerButton
+            StyledSettings = [Family, Style, FontColor]
+            Position.X = 328.000000000000000000
+            Position.Y = 8.000000000000000000
+            Sides = [Top, Left, Bottom, Right]
+            Size.Width = 129.000000000000000000
+            Size.Height = 33.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'btnRed'
+            TabOrder = 0
+            Text = 'FECHAR'
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 20.000000000000000000
+            TextSettings.Font.StyleExt = {00020000000000000004000000}
+            XRadius = 3.000000000000000000
+            YRadius = 3.000000000000000000
+          end
+        end
+      end
+    end
+  end
+end

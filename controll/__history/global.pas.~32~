@@ -1,0 +1,190 @@
+unit global;
+
+interface
+
+uses
+  FireDAC.Comp.Client, System.SysUtils;
+  type
+    tconfiguracao= packed record
+      public
+        Path :string;
+        serv:string;
+      constructor Create(_Path: String);
+    procedure ReadConfigIni;
+  procedure WriteConfigIni;
+      procedure servidor(logico:boolean);
+    end;
+  tcategoriaPro = class
+     descricao:string;
+     idCategoria:integer;
+  end;
+  tclientes=class
+    public
+     idCliente:integer;
+     Nome:string;
+  end;
+  Tfun = class
+    idFun : integer;
+    NomeFun:string;
+    Funcao:string;
+  end;
+  Tquartos = class
+    public
+    idQuarto:integer;
+    numero:integer;
+    status:string;
+  end;
+  TUsuario = class
+  strict private
+    class var FInstance: TUsuario;
+  private
+    Fid           : Integer;
+    Fnome         : string;
+    Fsenha        :string;
+    ffuncao        :string;
+    class procedure RealeaseInstance;
+  public
+    property id   : Integer read Fid    write Fid;
+    property nome : String  read Fnome  write Fnome;
+    property senha : String  read Fsenha  write Fsenha;
+    property funcao : String  read Ffuncao  write Ffuncao;
+    class function GetInstance: TUsuario;
+  end;
+  TReservas = class
+     public
+     IdReserva:integer;
+     DataEntrada:string;
+     DataSaida:string;
+     numeroAdult :integer;
+     NumeroCri:integer;
+     Idfuncionario:integer;
+     nomeFunc:string;
+     nomeCli:string;
+     Idcliente:integer;
+     NumeroQuarto:integer;
+     valorDiaria :string;
+     tel:string;
+  end;
+  procedure verificarFloat(Sender: TObject; var KeyChar: Char);
+
+  procedure verificarInteger(Sender: TObject; var KeyChar: Char);
+var
+  FDConnection      : TFDConnection;
+  Configuracoes     : tconfiguracao;
+
+implementation
+
+uses
+  FMX.Edit,system.IniFiles;
+
+
+  procedure tconfiguracao.ReadConfigIni;
+var
+  ArqINI: TIniFile;
+begin
+
+  ArqIni := TIniFile.Create(Path + 'Config.ini');
+
+  try
+    with ArqIni do
+    begin
+      Serv       := ReadString('CONFIGURACOES', 'Servidor', '127.0.0.1');
+
+    end;
+  finally
+
+  end;
+end;
+
+  procedure tconfiguracao.WriteConfigIni;
+var
+  ArqINI: TIniFile;
+  teste:Boolean;
+begin
+  ArqIni := TIniFile.Create(Path + 'Config.ini');
+  try
+    with ArqIni do
+    begin
+      WriteString('CONFIGURACOES', 'Servidor', serv);
+
+
+    end;
+    servidor(true);
+    //Configuracoes.LerINI;
+
+  finally
+    FreeAndNil(ArqIni);
+  end;
+end;
+
+
+
+constructor tconfiguracao.Create(_Path: String);
+begin
+  Path := _Path;
+end;
+
+procedure verificarInteger (Sender: TObject; var KeyChar: Char);
+begin
+   if not(KeyChar in ['0'..'9']) then
+    KeyChar := #0;
+end;
+
+procedure verificarFloat (Sender: TObject; var KeyChar: Char);
+begin
+   if not ((KeyChar in ['0'..'9']) or ((KeyChar = ',') and (not TEdit(Sender).Text.Contains(',')))) then
+    KeyChar := #0;
+end;
+
+class function TUsuario.GetInstance: TUsuario;
+begin
+  if not Assigned(self.FInstance) then
+    self.FInstance  := TUsuario.Create;
+
+  result            := self.FInstance;
+end;
+
+class procedure TUsuario.RealeaseInstance;
+begin
+  if Assigned(self.FInstance) then
+    self.FInstance.Free;
+end;
+
+procedure tconfiguracao.servidor(logico:boolean);
+begin
+   if not Assigned(FDConnection) then
+      FDConnection := TFDConnection.Create(nil);
+
+
+  with FDConnection do
+  begin
+    if(logico <> false)then
+    begin
+      params.Clear;
+    end;
+    LoginPrompt := false;
+    DriverName  := 'MySQL';
+
+    Params.Add('Database=pousada');
+    Params.Add('User_Name=root');
+    Params.Add('Password=12');
+    Params.Add('Server='+Configuracoes.serv);
+
+    try
+      try
+        Open;
+
+      except on E:Exception do
+        begin
+
+        end;
+      end;
+    finally
+      Close;
+    end;
+  end;
+
+
+end;
+
+end.

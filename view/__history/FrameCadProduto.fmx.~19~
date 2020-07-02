@@ -1,0 +1,215 @@
+object FrameCadastroProduto: TFrameCadastroProduto
+  Align = Client
+  Size.Width = 1024.000000000000000000
+  Size.Height = 800.000000000000000000
+  Size.PlatformDefault = False
+  object Rectop: TRectangle
+    Align = Top
+    Fill.Color = claBlack
+    Size.Width = 1024.000000000000000000
+    Size.Height = 89.000000000000000000
+    Size.PlatformDefault = False
+    object Label1: TLabel
+      Align = Client
+      StyledSettings = []
+      Size.Width = 1024.000000000000000000
+      Size.Height = 89.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Roboto'
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00020000000000000004000000}
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'Cadastro Produto'
+      object CornerButton2: TCornerButton
+        Align = Left
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 10.000000000000000000
+        Sides = [Top, Left, Bottom, Right]
+        Size.Width = 97.000000000000000000
+        Size.Height = 69.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'VOLTAR'
+        XRadius = 3.000000000000000000
+        YRadius = 3.000000000000000000
+        OnClick = CornerButton2Click
+      end
+    end
+  end
+  object RecTotal: TRectangle
+    Align = Client
+    Size.Width = 1024.000000000000000000
+    Size.Height = 711.000000000000000000
+    Size.PlatformDefault = False
+    object Layout1: TLayout
+      Align = Center
+      Size.Width = 710.000000000000000000
+      Size.Height = 370.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object Rectangle1: TRectangle
+        Align = Client
+        Fill.Color = claWhite
+        Padding.Left = 20.000000000000000000
+        Size.Width = 710.000000000000000000
+        Size.Height = 370.000000000000000000
+        Size.PlatformDefault = False
+        object Layout2: TLayout
+          Align = Top
+          Position.X = 20.000000000000000000
+          Size.Width = 690.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object Layout4: TLayout
+            Align = Top
+            Size.Width = 690.000000000000000000
+            Size.Height = 65.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Label3: TLabel
+              Align = Left
+              Size.Width = 249.000000000000000000
+              Size.Height = 65.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'Nome do produto'
+            end
+            object EdtNome: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 1
+              MaxLength = 20
+              Margins.Left = 30.000000000000000000
+              Margins.Top = 10.000000000000000000
+              Margins.Right = 30.000000000000000000
+              Margins.Bottom = 10.000000000000000000
+              Size.Width = 381.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+        end
+        object Layout3: TLayout
+          Align = Top
+          Position.X = 20.000000000000000000
+          Position.Y = 65.000000000000000000
+          Size.Width = 690.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          object EdtValor: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Client
+            TabOrder = 0
+            MaxLength = 20
+            Margins.Left = 30.000000000000000000
+            Margins.Top = 10.000000000000000000
+            Margins.Right = 30.000000000000000000
+            Margins.Bottom = 10.000000000000000000
+            Size.Width = 381.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            OnKeyUp = EdtValorKeyUp
+          end
+          object LbValor: TLabel
+            Align = Left
+            Size.Width = 249.000000000000000000
+            Size.Height = 65.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'valor do produto'
+          end
+        end
+        object Layout5: TLayout
+          Align = Top
+          Position.X = 20.000000000000000000
+          Position.Y = 195.000000000000000000
+          Size.Width = 690.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object Edtesto: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Client
+            TabOrder = 0
+            MaxLength = 20
+            Margins.Left = 30.000000000000000000
+            Margins.Top = 10.000000000000000000
+            Margins.Right = 30.000000000000000000
+            Margins.Bottom = 10.000000000000000000
+            Size.Width = 381.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            OnKeyUp = EdtestoKeyUp
+          end
+          object Lbestoque: TLabel
+            Align = Left
+            Size.Width = 249.000000000000000000
+            Size.Height = 65.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'estoque do produto'
+          end
+        end
+        object Layout6: TLayout
+          Align = Top
+          Position.X = 20.000000000000000000
+          Position.Y = 130.000000000000000000
+          Size.Width = 690.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          object EdtVal: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Client
+            TabOrder = 0
+            MaxLength = 20
+            Margins.Left = 30.000000000000000000
+            Margins.Top = 10.000000000000000000
+            Margins.Right = 30.000000000000000000
+            Margins.Bottom = 10.000000000000000000
+            Size.Width = 381.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+          end
+          object Label2: TLabel
+            Align = Left
+            Size.Width = 249.000000000000000000
+            Size.Height = 65.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'data de validade do produto'
+          end
+        end
+        object Layout7: TLayout
+          Align = Bottom
+          Position.X = 20.000000000000000000
+          Position.Y = 312.000000000000000000
+          Size.Width = 690.000000000000000000
+          Size.Height = 58.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+          object CornerButton1: TCornerButton
+            StyledSettings = [FontColor]
+            Position.X = 448.000000000000000000
+            Position.Y = 8.000000000000000000
+            Sides = [Top, Left, Bottom, Right]
+            Size.Width = 177.000000000000000000
+            Size.Height = 41.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'btnSalvar'
+            TabOrder = 0
+            Text = 'Salvar'
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00020000000000000004000000}
+            XRadius = 3.000000000000000000
+            YRadius = 3.000000000000000000
+            OnClick = CornerButton1Click
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,129 @@
+unit frameFuncio;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.ListView.Types, FMX.ListView.Appearances, FMX.ListView.Adapters.Base,
+  FMX.Edit, FMX.ListView, FMX.Layouts, FMX.Controls.Presentation, FMX.Objects,
+  Data.DB, Datasnap.DBClient, System.Rtti, System.Bindings.Outputs,
+  Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components,
+  Data.Bind.DBScope;
+
+type
+  TFrameFuncionario = class(TFrame)
+    Rectop: TRectangle;
+    Label1: TLabel;
+    CornerButton2: TCornerButton;
+    CornerButton1: TCornerButton;
+    RecTotal: TRectangle;
+    Layout1: TLayout;
+    Rectangle1: TRectangle;
+    Lvprod: TListView;
+    Layout2: TLayout;
+    Label2: TLabel;
+    Label3: TLabel;
+    Edit1: TEdit;
+    cdsFuncionario: TClientDataSet;
+    BindSourceDB1: TBindSourceDB;
+    BindingsList1: TBindingsList;
+    LinkFillControlToField1: TLinkFillControlToField;
+    Label4: TLabel;
+    procedure CornerButton2Click(Sender: TObject);
+    procedure Edit1KeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+    procedure CornerButton1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    constructor create(_AOwner:TComponent); override;
+    procedure Release;
+    procedure dados(texto : string = ' ');
+  end;
+
+ var
+    FrameFun  :TFrameFuncionario;
+
+implementation
+
+uses
+  frameCadastro, pousada, FireDAC.Comp.Client,global, FrameCadastroFun;
+
+{$R *.fmx}
+
+procedure TFrameFuncionario.CornerButton1Click(Sender: TObject);
+begin
+  framecadfuncio  :=TFrameCadFunc.create(TFormTelaPrincipal);
+  Release;
+end;
+
+procedure TFrameFuncionario.CornerButton2Click(Sender: TObject);
+begin
+  release;
+  FrameCad := TFrameCadastros.Create(FormTelaPrincipal);
+end;
+
+constructor TFrameFuncionario.Create(_AOwner: TComponent);
+begin
+  inherited;
+  Parent := TFmxObject(_AOwner);
+  dados;
+end;
+
+procedure TFrameFuncionario.dados(texto : string = ' ');
+var
+  qry:TFDQuery;
+begin
+
+
+    qry := TFDQuery.Create(self);
+    with qry do
+    begin
+      qry.Connection := FDConnection;
+      with qry.SQL do
+      begin
+        if texto = ' ' then
+            add('select idFuncionario,nome,DataAdmissao from funcionario')
+        else
+           add('select idFuncionario,nome,DataAdmissao from funcionario where nome like ''%'+ texto+'%''')
+
+      end;
+      Open;
+      cdsFuncionario.EmptyDataSet;
+      while not EOF do
+      begin
+        cdsFuncionario.Insert;
+        cdsFuncionario.FieldByName('nome').AsString := FieldByName('nome').AsString;
+        cdsFuncionario.FieldByName('id').AsInteger := FieldByName('idFuncionario').AsInteger;
+         cdsFuncionario.FieldByName('data').AsString   := DateToStr(FieldByName('DataAdmissao').AsDateTime);
+        cdsFuncionario.Post;
+        next;
+      end;
+      cdsFuncionario.Close;
+      cdsFuncionario.Open;
+      qry.Close;
+    end;
+    FDConnection.Close;
+    FreeAndNil(qry);
+end;
+
+
+procedure TFrameFuncionario.Edit1KeyUp(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+  dados(Edit1.Text);
+end;
+
+procedure TFrameFuncionario.Release;
+begin
+  Name := '';
+
+  FreeOnRelease;
+  inherited;
+
+  FrameFun := nil;
+end;
+
+end.

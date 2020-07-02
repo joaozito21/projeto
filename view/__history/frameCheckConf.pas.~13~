@@ -1,0 +1,111 @@
+unit frameCheckConf;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Controls.Presentation, FMX.Layouts, FMX.Objects,
+  System.Generics.Collections, FrameMeni;
+
+type
+  TFrameCheck = class(TFrame)
+    Rectangle2: TRectangle;
+    Layout2: TLayout;
+    Layout3: TLayout;
+    CornerButton3: TCornerButton;
+    Layout1: TLayout;
+    Label2: TLabel;
+    LblNomeCli: TLabel;
+    Layout4: TLayout;
+    Label3: TLabel;
+    LblTel: TLabel;
+    Layout5: TLayout;
+    Label5: TLabel;
+    LblFun: TLabel;
+    Layout6: TLayout;
+    Label7: TLabel;
+    LblEnt: TLabel;
+    Layout7: TLayout;
+    Label9: TLabel;
+    LblSai: TLabel;
+    Layout8: TLayout;
+    Label11: TLabel;
+    LblVal: TLabel;
+    Rectangle3: TRectangle;
+    Label1: TLabel;
+    Button1: TButton;
+    procedure CornerButton3Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+      ids :integer;
+      constructor create(_AOwner:TComponent;id_reserva:integer = 0;modif:boolean = false;dat:string=''); overload;
+    procedure Release;override;
+
+  end;
+
+  var
+    formCheckConf : TFrameCheck;
+
+implementation
+
+uses
+  global, BancoReserva, FrameQuartoControle, pousada;
+
+{$R *.fmx}
+
+
+procedure TFrameCheck.Release;
+begin
+  Name := '';
+
+  FreeOnRelease;
+  inherited;
+
+  formCheckConf := nil;
+end;
+
+
+procedure TFrameCheck.Button1Click(Sender: TObject);
+begin
+  with treseva.create(self) do
+         checkin(ids);
+   Release;
+   frameMenu.verificar;
+end;
+
+procedure TFrameCheck.CornerButton3Click(Sender: TObject);
+begin
+   release;
+end;
+
+constructor TFrameCheck.Create(_AOwner: TComponent;id_reserva:integer;modif:boolean;dat:string);
+var
+  lista:TObjectList<Tclientes>;
+  listaReser: TObjectList<Treservas>;
+  I:integer;
+  id:integer;
+  nome:string;
+begin
+  inherited Create(Owner);
+  Parent := TFmxObject(_AOwner);
+  with  Treseva.create(self) do
+  begin
+       listaReser := pegarReservaTotal(id_reserva,dat);
+       if listaReser.Count > 0 then
+       begin
+        ids   := listaReser.Items[0].IdReserva;
+        LblNomeCli.Text := listaReser.Items[0].nomeCli;
+        LblFun.Text      := listaReser.Items[0].nomeFunc;
+        LblEnt.Text      := listaReser.Items[0].DataEntrada;
+        LblSai.Text      := listaReser.Items[0].DataSaida;
+        LblVal.Text       := listaReser.Items[0].valorDiaria;
+        LblTel.Text       := listaReser.Items[0].tel;
+       end;
+  end;
+end;
+
+end.

@@ -1,0 +1,88 @@
+unit frameCheckConf;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Controls.Presentation, FMX.Layouts, FMX.Objects,
+  System.Generics.Collections;
+
+type
+  TFrameCheck = class(TFrame)
+    Rectangle2: TRectangle;
+    Layout2: TLayout;
+    Rectangle3: TRectangle;
+    Label1: TLabel;
+    Layout3: TLayout;
+    CornerButton3: TCornerButton;
+    Layout1: TLayout;
+    Label2: TLabel;
+    LblNomeCli: TLabel;
+    Layout4: TLayout;
+    Label3: TLabel;
+    LblTel: TLabel;
+    Layout5: TLayout;
+    Label5: TLabel;
+    LblFun: TLabel;
+    Layout6: TLayout;
+    Label7: TLabel;
+    LblEnt: TLabel;
+    Layout7: TLayout;
+    Label9: TLabel;
+    LblSai: TLabel;
+    Layout8: TLayout;
+    Label11: TLabel;
+    LblVal: TLabel;
+    Layout9: TLayout;
+    Rectangle1: TRectangle;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+      constructor create(_AOwner:TComponent;id_reserva:integer = 0;modif:boolean = false;dat:string=''); overload;
+    procedure Release;override;
+
+  end;
+
+  var
+    formCheckConf : TFrameCheck;
+
+implementation
+
+uses
+  global, BancoReserva;
+
+{$R *.fmx}
+
+
+procedure TFrameCheck.Release;
+begin
+  Name := '';
+
+  FreeOnRelease;
+  inherited;
+
+  formCheckConf := nil;
+end;
+
+
+constructor TFrameCheck.Create(_AOwner: TComponent;id_reserva:integer;modif:boolean;dat:string);
+var
+  lista:TObjectList<Tclientes>;
+  listaReser: TObjectList<Treservas>;
+  I:integer;
+  id:integer;
+  nome:string;
+begin
+  inherited Create(Owner);
+  Parent := TFmxObject(_AOwner);
+  with  Treseva.create(self) do
+  begin
+       listaReser := pegarReservaTotal(id_reserva,dat);
+       LblNomeCli.Text := listaReser.Items[0].nomeCli;
+
+  end;
+end;
+
+end.

@@ -1,0 +1,244 @@
+object FrameQuart: TFrameQuart
+  Align = Client
+  Size.Width = 1024.000000000000000000
+  Size.Height = 800.000000000000000000
+  Size.PlatformDefault = False
+  object Rectop: TRectangle
+    Align = Top
+    Fill.Color = claBlack
+    Size.Width = 1024.000000000000000000
+    Size.Height = 89.000000000000000000
+    Size.PlatformDefault = False
+    object Label1: TLabel
+      Align = Client
+      StyledSettings = []
+      Size.Width = 1024.000000000000000000
+      Size.Height = 89.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Roboto'
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00020000000000000004000000}
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'Cadastro quarto'
+      object CornerButton2: TCornerButton
+        Align = Left
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 10.000000000000000000
+        Sides = [Top, Left, Bottom, Right]
+        Size.Width = 97.000000000000000000
+        Size.Height = 69.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'VOLTAR'
+        XRadius = 3.000000000000000000
+        YRadius = 3.000000000000000000
+        OnClick = CornerButton2Click
+      end
+      object CornerButton1: TCornerButton
+        Align = Right
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 934.000000000000000000
+        Position.Y = 10.000000000000000000
+        Sides = [Top, Left, Bottom, Right]
+        Size.Width = 80.000000000000000000
+        Size.Height = 69.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = '+'
+        XRadius = 3.000000000000000000
+        YRadius = 3.000000000000000000
+        OnClick = CornerButton1Click
+      end
+    end
+  end
+  object RecTotal: TRectangle
+    Align = Client
+    Size.Width = 1024.000000000000000000
+    Size.Height = 711.000000000000000000
+    Size.PlatformDefault = False
+    object Layout1: TLayout
+      Align = Center
+      Size.Width = 710.000000000000000000
+      Size.Height = 370.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object Rectangle1: TRectangle
+        Align = Client
+        Fill.Color = claWhite
+        Size.Width = 710.000000000000000000
+        Size.Height = 370.000000000000000000
+        Size.PlatformDefault = False
+        object LvQuarto: TListView
+          ItemAppearanceClassName = 'TDynamicAppearance'
+          ItemEditAppearanceClassName = 'TDynamicAppearance'
+          HeaderAppearanceClassName = 'TListHeaderObjects'
+          FooterAppearanceClassName = 'TListHeaderObjects'
+          Align = Client
+          Size.Width = 710.000000000000000000
+          Size.Height = 297.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
+            item
+              AppearanceObjectName = 'numero'
+              AppearanceClassName = 'TTextObjectAppearance'
+              Appearance.TextAlign = Leading
+              Appearance.Width = 100.000000000000000000
+              Appearance.Height = 44.000000000000000000
+              Appearance.PlaceOffset.X = 88.000000000000000000
+            end
+            item
+              AppearanceObjectName = 'tipo'
+              AppearanceClassName = 'TTextObjectAppearance'
+              Appearance.TextAlign = Leading
+              Appearance.Width = 300.000000000000000000
+              Appearance.Height = 44.000000000000000000
+              Appearance.PlaceOffset.X = 256.000000000000000000
+            end
+            item
+              AppearanceObjectName = 'data'
+              AppearanceClassName = 'TTextObjectAppearance'
+              Appearance.TextAlign = Leading
+              Appearance.Width = 150.000000000000000000
+              Appearance.Height = 44.000000000000000000
+              Appearance.Visible = False
+              Appearance.PlaceOffset.X = 296.000000000000000000
+            end
+            item
+              AppearanceObjectName = 'estoque'
+              AppearanceClassName = 'TTextObjectAppearance'
+              Appearance.TextAlign = Leading
+              Appearance.Width = 150.000000000000000000
+              Appearance.Height = 44.000000000000000000
+              Appearance.Visible = False
+              Appearance.PlaceOffset.X = 448.000000000000000000
+            end
+            item
+              AppearanceObjectName = 'id'
+              AppearanceClassName = 'TTextObjectAppearance'
+              Appearance.TextAlign = Leading
+              Appearance.Width = 80.000000000000000000
+            end>
+          ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
+            item
+              AppearanceObjectName = 'Text1'
+              AppearanceClassName = 'TTextObjectAppearance'
+            end>
+          OnDblClick = LvQuartoDblClick
+        end
+        object Layout2: TLayout
+          Align = Top
+          Margins.Left = 10.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 40.000000000000000000
+          Size.Width = 700.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          object Label2: TLabel
+            Align = Left
+            Margins.Right = 25.000000000000000000
+            Position.X = 85.000000000000000000
+            Size.Width = 150.000000000000000000
+            Size.Height = 33.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'numero'
+          end
+          object Label3: TLabel
+            Align = MostLeft
+            Margins.Right = 20.000000000000000000
+            Size.Width = 65.000000000000000000
+            Size.Height = 33.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'id'
+          end
+          object Label4: TLabel
+            Align = Left
+            Position.X = 260.000000000000000000
+            Size.Width = 120.000000000000000000
+            Size.Height = 33.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'tipo'
+          end
+        end
+        object Edit1: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = MostTop
+          TabOrder = 2
+          Size.Width = 710.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          OnKeyUp = Edit1KeyUp
+        end
+      end
+    end
+  end
+  object cdQuarto: TClientDataSet
+    PersistDataPacket.Data = {
+      590000009619E0BD010000001800000003000000000003000000590002696404
+      00010000000000066E756D65726F010049000000010005574944544802000200
+      1400047469706F01004900000001000557494454480200020046000000}
+    Active = True
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'numero'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'tipo'
+        DataType = ftString
+        Size = 70
+      end>
+    IndexDefs = <>
+    Params = <>
+    StoreDefs = True
+    Left = 584
+    Top = 472
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = cdQuarto
+    ScopeMappings = <>
+    Left = 512
+    Top = 472
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 92
+    Top = 181
+    object LinkFillControlToField1: TLinkFillControlToField
+      Category = 'Quick Bindings'
+      Control = LvQuarto
+      Track = True
+      FillDataSource = BindSourceDB1
+      AutoFill = True
+      FillExpressions = <
+        item
+          SourceMemberName = 'id'
+          ControlMemberName = 'id'
+        end
+        item
+          SourceMemberName = 'numero'
+          ControlMemberName = 'numero'
+        end
+        item
+          SourceMemberName = 'tipo'
+          ControlMemberName = 'tipo'
+        end>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+  end
+end

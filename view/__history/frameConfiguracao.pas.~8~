@@ -1,0 +1,85 @@
+unit frameConfiguracao;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Edit, FMX.Layouts, FMX.Controls.Presentation, FMX.Objects;
+
+type
+  TFrameconf = class(TFrame)
+    RecTop: TRectangle;
+    lbTop: TLabel;
+    RectPrinc: TRectangle;
+    LytLogin: TLayout;
+    Layout4: TLayout;
+    LbMensagem: TLabel;
+    Layout1: TLayout;
+    CornerButton1: TCornerButton;
+    Layout2: TLayout;
+    Label1: TLabel;
+    Edit1: TEdit;
+    CornerButton2: TCornerButton;
+    procedure CornerButton1Click(Sender: TObject);
+    procedure CornerButton2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+       constructor create(_AOwner:TComponent); override;
+        procedure Release;
+        procedure getConf;
+  end;
+var
+   frameConfig:TFrameconf;
+implementation
+
+uses
+  global, FrameMensagem;
+{$R *.fmx}
+
+procedure TFrameconf.Release;
+begin
+  Name := '';
+
+  FreeOnRelease;
+  inherited;
+
+  frameConfig := nil;
+end;
+
+procedure TFrameconf.getConf;
+begin
+  with Configuracoes do
+  begin
+    Edit1.Text := serv;
+  end;
+
+end;
+procedure TFrameconf.CornerButton1Click(Sender: TObject);
+begin
+  self.Release;
+end;
+
+procedure TFrameconf.CornerButton2Click(Sender: TObject);
+begin
+  if not(Edit1.Text.IsEmpty) then
+  begin
+    Configuracoes.serv := Edit1.Text;
+    Configuracoes.WriteConfigIni;
+    Release;
+  end
+  else
+    framemensagem := TFrameMen.create(frameConfig,'aviso','campo vazio complete ele ');
+
+end;
+
+constructor TFrameconf.Create(_AOwner: TComponent);
+begin
+  inherited;
+  Parent := TFmxObject(_AOwner);
+  getConf;
+end;
+
+end.

@@ -1,0 +1,69 @@
+unit bancoQuarto;
+
+interface
+
+uses
+  System.Classes;
+  type
+    tquarto= class(tcomponent)
+        public
+          id:integer;
+          numero:string;
+          tipo:string;
+          procedure inserir_quarto(numero,tipo:string);
+    end;
+
+implementation
+
+uses
+  FireDAC.Comp.Client,global;
+
+procedure tquarto.inserir_quarto(numero,tipo:string);
+var
+  qry:TFDQuery;
+begin
+    qry := TFDQuery.Create(self);
+    with qry do
+    begin
+      qry.Connection := FDConnection;
+      with qry.SQL do
+      begin
+        add('insert into quarto(numero,tipo)values(:num,:tipo)');
+        ParamByName('num').AsString := numero;
+        ParamByName('tipo').AsFloat :=tipo;
+      end;
+      ExecSQL;
+
+      qry.Close;
+    end;
+    FDConnection.Close;
+end;
+
+procedure Tprod.alterar_produto(nome,valor,dat,est:string;id:integer);
+var
+  qry:TFDQuery;
+begin
+    qry := TFDQuery.Create(self);
+    with qry do
+    begin
+      qry.Connection := FDConnection;
+      with qry.SQL do
+      begin
+        add('update produto set descricao = :desc,valor=:val,data_val =:dat,estoque =:esto    where id_produto = :id');
+          ParamByName('id').AsInteger :=id;
+        ParamByName('desc').AsString := nome;
+        ParamByName('val').AsFloat :=strtofloat(valor);
+        ParamByName('dat').AsDate := StrToDate(dat);
+         ParamByName('esto').AsFloat := est.ToDouble;
+      end;
+      ExecSQL;
+
+      qry.Close;
+    end;
+    FDConnection.Close;
+    FreeAndNil(qry);
+
+end;
+
+
+end.

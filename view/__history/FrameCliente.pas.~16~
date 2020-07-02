@@ -1,0 +1,134 @@
+unit FrameCliente;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.ListView.Types, FMX.ListView.Appearances, FMX.ListView.Adapters.Base,
+  FMX.Edit, FMX.ListView, FMX.Layouts, FMX.Controls.Presentation, FMX.Objects,
+  System.Rtti, System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.EngExt,
+  Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.DBScope, Data.DB,
+  Datasnap.DBClient;
+
+type
+  TFrameCli = class(TFrame)
+    Rectop: TRectangle;
+    Label1: TLabel;
+    btnVolta: TCornerButton;
+    BtnNovo: TCornerButton;
+    RecTotal: TRectangle;
+    Layout1: TLayout;
+    Rectangle1: TRectangle;
+    LvCliente: TListView;
+    Layout2: TLayout;
+    Label2: TLabel;
+    Label3: TLabel;
+    Edit1: TEdit;
+    cdCliente: TClientDataSet;
+    BindSourceDB1: TBindSourceDB;
+    BindingsList1: TBindingsList;
+    LinkFillControlToField1: TLinkFillControlToField;
+    procedure BtnNovoClick(Sender: TObject);
+    procedure LvClienteDblClick(Sender: TObject);
+    procedure Edit1KeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure pegardados(texto : string = ' ');
+    constructor create(_AOwner:TComponent); override;
+    procedure Release;
+  end;
+
+  var
+    frameClientes:TFrameCli;
+
+implementation
+
+uses
+  frameCadCli, pousada, FireDAC.Comp.Client,global;
+
+{$R *.fmx}
+
+procedure TFrameCli.Release;
+begin
+  Name := '';
+
+  FreeOnRelease;
+  inherited;
+
+  frameClientes := nil;
+end;
+
+ procedure TFrameCli.pegardados(texto : string = ' ');
+var
+  qry:TFDQuery;
+begin
+
+
+    qry := TFDQuery.Create(self);
+    with qry do
+    begin
+      qry.Connection := FDConnection;
+      with qry.SQL do
+      begin
+        if texto = ' ' then
+            add('select idcliente,nome from cliente where inativarCliente = 0')
+        else
+           add('select idcliente,nome from cliente where nome like ''%'+ texto+'%'' and inativarCliente = 0')
+
+      end;
+      Open;
+      cdcliente.EmptyDataSet;
+      while not EOF do
+      begin
+        cdcliente.Insert;
+        cdcliente.FieldByName('nome').AsString := FieldByName('nome').AsString;
+        cdcliente.FieldByName('id').AsInteger := FieldByName('idcliente').AsInteger;
+        cdcliente.Post;
+        next;
+      end;
+      cdcliente.Close;
+      cdcliente.Open;
+      qry.Close;
+    end;
+    FDConnection.Close;
+    FreeAndNil(qry);
+end;
+
+
+
+constructor TFrameCli.Create(_AOwner: TComponent);
+begin
+  inherited;
+  Parent := TFmxObject(_AOwner);
+  pegardados;
+end;
+
+procedure TFrameCli.Edit1KeyUp(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+  pegardados(Edit1.Text);
+end;
+
+procedure TFrameCli.LvClienteDblClick(Sender: TObject);
+begin
+
+   if Assigned(Lvcliente.Selected) then
+   begin
+
+    cdcliente.RecNo:=Lvcliente.Selected.Index+ 1;
+   frameCadCliente:=TFrameCadastroCli.create(parent,cdcliente.FieldByName('id').AsInteger,true);
+    Release;
+   end;
+end;
+
+procedure TFrameCli.BtnNovoClick(Sender: TObject);
+begin
+  frameCadcliente := TFrameCadastroCli.create(FormTelaPrincipal);
+  release;
+end;
+
+end.

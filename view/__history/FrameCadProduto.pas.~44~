@@ -1,0 +1,194 @@
+unit FrameCadProduto;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Edit, FMX.Layouts, FMX.Controls.Presentation, FMX.Objects,
+  FMX.DateTimeCtrls, FMX.ListBox,System.Generics.Collections,global,bancocategoria;
+
+type
+  TFrameCadastroProduto = class(TFrame)
+    Rectop: TRectangle;
+    Label1: TLabel;
+    RecTotal: TRectangle;
+    Layout1: TLayout;
+    Rectangle1: TRectangle;
+    Layout2: TLayout;
+    LbValor: TLabel;
+    EdtValor: TEdit;
+    Layout3: TLayout;
+    Layout4: TLayout;
+    Label3: TLabel;
+    EdtNome: TEdit;
+    Layout5: TLayout;
+    Edtesto: TEdit;
+    Lbestoque: TLabel;
+    Layout6: TLayout;
+    Label2: TLabel;
+    Layout7: TLayout;
+    CornerButton1: TCornerButton;
+    CornerButton2: TCornerButton;
+    EdtVal: TDateEdit;
+    Layout8: TLayout;
+    Label4: TLabel;
+    cmbCat: TComboBox;
+    procedure CornerButton1Click(Sender: TObject);
+    procedure CornerButton2Click(Sender: TObject);
+    procedure EdtValorKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+    procedure EdtestoKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+
+      modi : boolean;
+      pro_id:integer;
+      list:tobjectlist<tcategoria>;
+     constructor create(_AOwner:TComponent;id_pro:integer = 0;modif:boolean = false); overload;
+    procedure Release;override;
+    procedure  pegarInfo(id:integer);
+  end;
+
+var
+  framePro:TFrameCadastroProduto;
+
+implementation
+
+uses
+  FireDAC.Comp.Client,frameinicial, pousada, frameCadastro,bancoProd,
+  frameProd;
+
+
+{$R *.fmx}
+
+
+
+procedure TFrameCadastroProduto.CornerButton2Click(Sender: TObject);
+begin
+  if assigned(frameProds) then
+       frameProds.Release;
+  release;
+
+  frameProds := TFrameProdutos.Create(FormTelaPrincipal);
+end;
+
+constructor TFrameCadastroProduto.Create(_AOwner: TComponent;id_pro:integer;modif:boolean);
+var
+  lista:TObjectList<Tcategoria>;
+  I:integer;
+begin
+   inherited Create(Owner);
+  Parent := TFmxObject(_AOwner);
+  if modif then
+  begin
+    pegarInfo(id_pro);
+    modi := modif;
+    pro_id := id_pro;
+  end
+  else
+  begin
+      with tcategoria.Create(self) do
+     list:=pegarCategoria;
+      cmbCat.Items.Add('Selecione o nome do responsavel');
+  for I := 0 to list.Count -1  do
+     cmbCat.Items.Add(lista.Items[I].descricao);
+ if cmbCat.Items.Count > 0 then
+    cmbCat.ItemIndex := 0;
+
+  end;
+end;
+
+procedure TFrameCadastroProduto.EdtestoKeyUp(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+  verificarFloat(sender,keychar);
+end;
+
+procedure TFrameCadastroProduto.EdtValorKeyUp(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+  verificarFloat(sender,keychar);
+end;
+
+procedure TFrameCadastroProduto.Release;
+begin
+  Name := '';
+
+  FreeOnRelease;
+  inherited;
+
+  framePro := nil;
+end;
+
+procedure  TFrameCadastroProduto.pegarInfo(id:integer);
+var
+  qry:TFDQuery;
+begin
+    qry := TFDQuery.Create(self);
+
+   try
+      with qry do
+    begin
+      qry.Connection := FDConnection;
+      with qry.SQL do
+      begin
+        add('select * from produto where id_produto = :id');
+        ParamByName('id').Asinteger := id;
+
+      end;
+      open;
+
+      while not EOF do
+      begin
+        EdtNome.Text := FieldByName('descricao').AsString;
+        EdtValor.Text := FieldByName('valor').AsFloat.ToString;
+        EdtVal.Text :=datetostr(FieldByName('data_val').AsDateTime);
+        Edtesto.Text  :=  FieldByName('estoque').AsFloat.ToString;
+        next;
+      end;
+
+      qry.Close;
+    end;
+
+   finally
+     FDConnection.Close;
+   end;
+end;
+
+procedure TFrameCadastroProduto.CornerButton1Click(Sender: TObject);
+var
+  qry:TFDQuery;
+  descricao:string;
+  cat:Tcategoria;
+  id:integer;
+begin
+    descricao:=cmbcat[cmbcat.ItemIndex];
+    if(not(EdtNome.Text.IsEmpty) and not (EdtValor.Text.IsEmpty) and not (EdtVal.Text.IsEmpty)
+          and  not(Edtesto.Text.IsEmpty)) then
+    begin
+
+        for cat in list do
+     begin
+       if descricao = cat.descricao then
+              id:=cat.idcategoria;
+     end;
+      with Tprod.Create(self) do
+      begin
+        if modi then
+            alterar_produto(EdtNome.Text,EdtValor.Text,
+                      EdtVal.Text,Edtesto.Text,pro_id,id)
+        else
+          inserir_produto(EdtNome.Text,EdtValor.Text,
+                      EdtVal.Text,Edtesto.Text,id);
+      end;
+    end;
+
+    Release;
+    frameProds := TFrameProdutos.Create(FormTelaPrincipal);
+end;
+
+end.

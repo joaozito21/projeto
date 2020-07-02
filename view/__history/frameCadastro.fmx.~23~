@@ -1,0 +1,180 @@
+object FrameCadastros: TFrameCadastros
+  Align = Client
+  Size.Width = 1024.000000000000000000
+  Size.Height = 800.000000000000000000
+  Size.PlatformDefault = False
+  object RecTotal: TRectangle
+    Align = Client
+    Size.Width = 1024.000000000000000000
+    Size.Height = 711.000000000000000000
+    Size.PlatformDefault = False
+    object Layout1: TLayout
+      Align = Center
+      Size.Width = 900.000000000000000000
+      Size.Height = 600.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object Rectangle1: TRectangle
+        Align = Client
+        Fill.Color = claWhite
+        Size.Width = 900.000000000000000000
+        Size.Height = 600.000000000000000000
+        Size.PlatformDefault = False
+        object Layout2: TLayout
+          Align = Top
+          Size.Width = 900.000000000000000000
+          Size.Height = 250.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object btnPro: TCornerButton
+            Align = Left
+            StyledSettings = [FontColor]
+            Margins.Left = 10.000000000000000000
+            Margins.Top = 15.000000000000000000
+            Margins.Bottom = 15.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 15.000000000000000000
+            Sides = [Top, Left, Bottom, Right]
+            Size.Width = 167.000000000000000000
+            Size.Height = 220.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'cadastro produtos'
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 25.000000000000000000
+            TextSettings.Font.StyleExt = {00020000000000000004000000}
+            TextSettings.WordWrap = True
+            XRadius = 3.000000000000000000
+            YRadius = 3.000000000000000000
+            OnClick = btnProClick
+          end
+          object btnQuarto: TCornerButton
+            Align = Left
+            StyledSettings = [FontColor]
+            Margins.Left = 10.000000000000000000
+            Margins.Top = 15.000000000000000000
+            Margins.Bottom = 15.000000000000000000
+            Position.X = 187.000000000000000000
+            Position.Y = 15.000000000000000000
+            Sides = [Top, Left, Bottom, Right]
+            Size.Width = 170.000000000000000000
+            Size.Height = 220.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 4
+            Text = 'cadastro quartos'
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 25.000000000000000000
+            TextSettings.Font.StyleExt = {00020000000000000004000000}
+            TextSettings.WordWrap = True
+            XRadius = 3.000000000000000000
+            YRadius = 3.000000000000000000
+            OnClick = btnQuartoClick
+          end
+          object btnCli: TCornerButton
+            Align = Left
+            StyledSettings = [FontColor]
+            Margins.Left = 10.000000000000000000
+            Margins.Top = 15.000000000000000000
+            Margins.Bottom = 15.000000000000000000
+            Position.X = 367.000000000000000000
+            Position.Y = 15.000000000000000000
+            Sides = [Top, Left, Bottom, Right]
+            Size.Width = 170.000000000000000000
+            Size.Height = 220.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 3
+            Text = 'cadastro clientes'
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 25.000000000000000000
+            TextSettings.Font.StyleExt = {00020000000000000004000000}
+            TextSettings.WordWrap = True
+            XRadius = 3.000000000000000000
+            YRadius = 3.000000000000000000
+            OnClick = btnCliClick
+          end
+          object btnFun: TCornerButton
+            Align = Left
+            StyledSettings = [FontColor]
+            Margins.Left = 10.000000000000000000
+            Margins.Top = 15.000000000000000000
+            Margins.Bottom = 15.000000000000000000
+            Position.X = 547.000000000000000000
+            Position.Y = 15.000000000000000000
+            Sides = [Top, Left, Bottom, Right]
+            Size.Width = 170.000000000000000000
+            Size.Height = 220.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            Text = 'cadastro funcionario'
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 25.000000000000000000
+            TextSettings.Font.StyleExt = {00020000000000000004000000}
+            TextSettings.WordWrap = True
+            XRadius = 3.000000000000000000
+            YRadius = 3.000000000000000000
+            OnClick = btnFunClick
+          end
+          object CornerButton1: TCornerButton
+            Align = Left
+            StyledSettings = [FontColor]
+            Margins.Left = 10.000000000000000000
+            Margins.Top = 15.000000000000000000
+            Margins.Bottom = 15.000000000000000000
+            Position.X = 727.000000000000000000
+            Position.Y = 15.000000000000000000
+            Sides = [Top, Left, Bottom, Right]
+            Size.Width = 170.000000000000000000
+            Size.Height = 220.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            Text = 'cadastro categoria de produtos'
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 25.000000000000000000
+            TextSettings.Font.StyleExt = {00020000000000000004000000}
+            TextSettings.WordWrap = True
+            XRadius = 3.000000000000000000
+            YRadius = 3.000000000000000000
+            OnClick = CornerButton1Click
+          end
+        end
+      end
+    end
+  end
+  object Rectop: TRectangle
+    Align = Top
+    Fill.Color = claBlack
+    Size.Width = 1024.000000000000000000
+    Size.Height = 89.000000000000000000
+    Size.PlatformDefault = False
+    object Label1: TLabel
+      Align = Client
+      StyledSettings = []
+      Size.Width = 1024.000000000000000000
+      Size.Height = 89.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Roboto'
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00020000000000000004000000}
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'CADASTROS'
+      object CornerButton2: TCornerButton
+        Align = Left
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 10.000000000000000000
+        Sides = [Top, Left, Bottom, Right]
+        Size.Width = 80.000000000000000000
+        Size.Height = 69.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'VOLTAR'
+        XRadius = 3.000000000000000000
+        YRadius = 3.000000000000000000
+        OnClick = CornerButton2Click
+      end
+    end
+  end
+end

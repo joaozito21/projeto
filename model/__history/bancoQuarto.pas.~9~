@@ -1,0 +1,95 @@
+unit bancoQuarto;
+
+interface
+
+uses
+  System.Classes, System.Generics.Collections;
+  type
+    tquarto= class(tcomponent)
+        public
+          function pegarQuartos :TList<integer> ;
+          procedure inserir_quarto(numero,tipo:string);
+          procedure alterar_quarto(numero,tipo:string;id:integer);
+    end;
+
+implementation
+
+uses
+  FireDAC.Comp.Client,global, System.SysUtils;
+
+function tquarto.pegarQuartos :TList<integer> ;
+var
+  qry:TFDQuery;
+  listaQuartos:Tlist<integer>;
+begin
+    qry := TFDQuery.Create(self);
+    with qry do
+    begin
+      qry.Connection := FDConnection;
+      with qry.SQL do
+      begin
+        add('select Numero from quartos');
+        ParamByName('dat').AsString := data;
+      end;
+      listaQuartos:= TList<integer>.create;
+      open;
+
+      while not EOF do
+      begin
+        listaQuartos.Add(inttostr(FieldByName('numeroQuarto').AsInteger));
+
+        next;
+      end;
+
+      qry.Close;
+    end;
+    FDConnection.Close;
+    Result := listaQuartos;
+end;
+
+
+procedure tquarto.inserir_quarto(numero,tipo:string);
+var
+  qry:TFDQuery;
+begin
+    qry := TFDQuery.Create(self);
+    with qry do
+    begin
+      qry.Connection := FDConnection;
+      with qry.SQL do
+      begin
+        add('insert into quarto(numero,tipo)values(:num,:tipo)');
+        ParamByName('num').AsString := numero;
+        ParamByName('tipo').Asstring :=tipo;
+      end;
+      ExecSQL;
+
+      qry.Close;
+    end;
+    FDConnection.Close;
+end;
+
+procedure tquarto.alterar_quarto(numero,tipo:string;id:integer);
+var
+  qry:TFDQuery;
+begin
+    qry := TFDQuery.Create(self);
+    with qry do
+    begin
+      qry.Connection := FDConnection;
+      with qry.SQL do
+      begin
+        add('update quarto set numero= :num,tipo=:tipo  where idquarto = :id');
+        ParamByName('id').AsInteger :=id;
+        ParamByName('num').AsString := numero;
+        ParamByName('tipo').Asstring := tipo;
+      end;
+      ExecSQL;
+
+      qry.Close;
+    end;
+    FDConnection.Close;
+end;
+
+
+end.

@@ -1,0 +1,183 @@
+object FrameLogin: TFrameLogin
+  Size.Width = 343.000000000000000000
+  Size.Height = 581.000000000000000000
+  Size.PlatformDefault = False
+  object RectPrinc: TRectangle
+    Align = Client
+    Fill.Color = claWhite
+    Size.Width = 343.000000000000000000
+    Size.Height = 516.000000000000000000
+    Size.PlatformDefault = False
+    object LytLogin: TLayout
+      Align = VertCenter
+      Position.Y = 110.000000000000000000
+      Size.Width = 343.000000000000000000
+      Size.Height = 296.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object Layout2: TLayout
+        Align = MostTop
+        Size.Width = 343.000000000000000000
+        Size.Height = 65.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object Layout3: TLayout
+          Align = Left
+          Size.Width = 145.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object Label1: TLabel
+            Align = Client
+            StyledSettings = [FontColor]
+            Size.Width = 145.000000000000000000
+            Size.Height = 65.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 17.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            TextSettings.HorzAlign = Center
+            Text = 'Username :'
+          end
+        end
+        object Edit1: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Left
+          TabOrder = 1
+          Position.X = 155.000000000000000000
+          Position.Y = 20.000000000000000000
+          Margins.Left = 10.000000000000000000
+          Margins.Top = 20.000000000000000000
+          Margins.Bottom = 20.000000000000000000
+          Size.Width = 158.000000000000000000
+          Size.Height = 25.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+      object Layout4: TLayout
+        Align = MostTop
+        Position.Y = 65.000000000000000000
+        Size.Width = 343.000000000000000000
+        Size.Height = 65.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object Layout5: TLayout
+          Align = Left
+          Size.Width = 145.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object Label2: TLabel
+            Align = Client
+            StyledSettings = [FontColor]
+            Size.Width = 145.000000000000000000
+            Size.Height = 65.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 17.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            TextSettings.HorzAlign = Center
+            Text = 'Senha :'
+          end
+        end
+        object Edit2: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Left
+          TabOrder = 1
+          Password = True
+          Position.X = 155.000000000000000000
+          Position.Y = 20.000000000000000000
+          Margins.Left = 10.000000000000000000
+          Margins.Top = 20.000000000000000000
+          Margins.Bottom = 20.000000000000000000
+          Size.Width = 158.000000000000000000
+          Size.Height = 25.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+      object BtnCorfirma: TCornerButton
+        StyledSettings = []
+        Position.X = 32.000000000000000000
+        Position.Y = 168.000000000000000000
+        Sides = [Top, Left, Bottom, Right]
+        Size.Width = 281.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'BtnGreen'
+        TabOrder = 2
+        Text = 'Confirmar'
+        TextSettings.Font.Family = 'Roboto'
+        TextSettings.Font.Size = 17.000000000000000000
+        TextSettings.Font.StyleExt = {00020000000000000004000000}
+        TextSettings.FontColor = claWhite
+        XRadius = 3.000000000000000000
+        YRadius = 3.000000000000000000
+        OnClick = BtnCorfirmaClick
+      end
+      object Layout1: TLayout
+        Align = Bottom
+        Position.Y = 246.000000000000000000
+        Size.Width = 343.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        object CornerButton2: TCornerButton
+          Position.X = 128.000000000000000000
+          Position.Y = 16.000000000000000000
+          Sides = [Top, Left, Bottom, Right]
+          TabOrder = 0
+          Text = 'Criar Login'
+          XRadius = 3.000000000000000000
+          YRadius = 3.000000000000000000
+          OnClick = CornerButton2Click
+        end
+      end
+    end
+  end
+  object RecTop: TRectangle
+    Align = MostTop
+    Fill.Color = claBlack
+    Size.Width = 343.000000000000000000
+    Size.Height = 65.000000000000000000
+    Size.PlatformDefault = False
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object Label3: TLabel
+      Align = Client
+      StyledSettings = [Family, Size, Style]
+      Size.Width = 343.000000000000000000
+      Size.Height = 65.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'LOGIN'
+      object CornerButton1: TCornerButton
+        Position.X = 16.000000000000000000
+        Position.Y = 16.000000000000000000
+        Sides = [Top, Left, Bottom, Right]
+        Size.Width = 49.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'btnConf'
+        TabOrder = 0
+        XRadius = 3.000000000000000000
+        YRadius = 3.000000000000000000
+        OnClick = CornerButton1Click
+      end
+    end
+  end
+  object MySQLDriver: TFDPhysMySQLDriverLink
+    Left = 131
+    Top = 88
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'User_Name=master'
+      'Password=12'
+      'DriverID=MySQL'
+      'Database=pousada'
+      'Server=127.0.0.1')
+    Left = 264
+    Top = 120
+  end
+end

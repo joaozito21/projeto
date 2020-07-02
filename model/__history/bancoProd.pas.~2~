@@ -1,0 +1,41 @@
+unit bancoProd;
+
+interface
+    type
+
+     Tprod =class
+       public
+         procedure inserir_produto(nome,valor,dat,est:string);
+     end;
+
+implementation
+
+uses
+  FireDAC.Comp.Client,global, System.SysUtils;
+
+procedure Tprod.inserir_produto(nome,valor,dat,est:string);
+var
+  qry:TFDQuery;
+begin
+    {qry := TFDQuery.Create();  }
+    with qry do
+    begin
+      qry.Connection := FDConnection;
+      with qry.SQL do
+      begin
+        add('insert into produto(descricao,valor,data_val,estoque)values(:desc,:val,:dat,:esto)');
+        ParamByName('desc').AsString := nome;
+        ParamByName('val').AsFloat :=strtofloat(valor);
+        ParamByName('dat').AsDate := StrToDate(dat);
+         ParamByName('esto').AsFloat := est.ToDouble;
+      end;
+      ExecSQL;
+
+      qry.Close;
+    end;
+    FDConnection.Close;
+    FreeAndNil(qry);
+
+end;
+
+end.

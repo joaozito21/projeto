@@ -1,0 +1,79 @@
+unit BancoFuncionario;
+
+interface
+
+uses
+  System.Classes;
+type
+  Tfuncionario=class(tcomponent)
+      public
+      procedure inserir_fun(nome,funcao,telefone:string;inativar:boolean);
+      procedure alterarFun(nome,funcao,telefone:string;inativar:boolean;id:integer);
+
+  end;
+
+implementation
+
+uses
+  FireDAC.Comp.Client,global;
+
+procedure Tfuncionario.inserir_fun(nome,funcao,telefone:string;inativar:boolean);
+var
+  qry:TFDQuery;
+begin
+    qry := TFDQuery.Create(self);
+  with qry.SQL do
+      begin
+        qry.Connection := FDConnection;
+        add('insert into funcionario(nome,dataAdmissao,funcao,telefone,inativarFun)');
+        add('values(:nome,now(),:fun,:tel)');
+        qry.ParamByName('nome').AsString := nome;
+        qry.ParamByName('fun').AsString := funcao;
+        qry.ParamByName('tel').AsString :=telefone;
+
+       { if inativar then
+        begin
+              ParamByName('ina').AsInteger :=0;
+        end
+        else
+             ParamByName('ina').AsInteger :=1;
+      end; }
+      qry.ExecSQL;
+
+      qry.Close;
+    end;
+    FDConnection.Close;
+end;
+
+procedure Tfuncionario.alterarFun(nome,funcao,telefone:string;inativar:boolean;id:integer);
+var
+  qry:TFDQuery;
+begin
+    qry := TFDQuery.Create(self);
+  with qry.SQL do
+      begin
+        qry.Connection := FDConnection;
+        add('update funcionario set nome = :nome,funcao = :fun,telefone =:tel ,inativarFun = :ina  ');
+        add('values(,now(),,)');
+        qry.ParamByName('nome').AsString := nome;
+        qry.ParamByName('fun').AsString := funcao;
+        qry.ParamByName('tel').AsString :=telefone;
+        qry.ParamByName('id').AsInteger :=id;
+
+       if inativar then
+        begin
+             qry.ParamByName('ina').AsInteger :=0;
+        end
+        else
+             qry.ParamByName('ina').AsInteger :=1;
+      end;
+      qry.ExecSQL;
+
+      qry.Close;
+      FDConnection.Close;
+    end;
+
+
+
+
+end.

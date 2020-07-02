@@ -1,0 +1,69 @@
+object FrameAvI: TFrameAvI
+  Size.Width = 573.000000000000000000
+  Size.Height = 386.000000000000000000
+  Size.PlatformDefault = False
+  object Rectangle1: TRectangle
+    Align = Client
+    Fill.Color = claWhite
+    Size.Width = 573.000000000000000000
+    Size.Height = 386.000000000000000000
+    Size.PlatformDefault = False
+    object Rectangle2: TRectangle
+      Align = Top
+      Fill.Color = claBlack
+      Size.Width = 573.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      object LbTop: TLabel
+        Align = Client
+        StyledSettings = []
+        Size.Width = 573.000000000000000000
+        Size.Height = 73.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'Roboto'
+        TextSettings.Font.Size = 20.000000000000000000
+        TextSettings.Font.StyleExt = {00020000000000000004000000}
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+      end
+    end
+    object Layout1: TLayout
+      Align = Bottom
+      Position.Y = 336.000000000000000000
+      Size.Width = 573.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object CornerButton1: TCornerButton
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 384.000000000000000000
+        Position.Y = 8.000000000000000000
+        Sides = [Top, Left, Bottom, Right]
+        Size.Width = 145.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'btnRed'
+        TabOrder = 0
+        Text = 'Fechar'
+        TextSettings.Font.Family = 'Roboto'
+        TextSettings.Font.Size = 20.000000000000000000
+        TextSettings.Font.StyleExt = {00020000000000000004000000}
+        XRadius = 3.000000000000000000
+        YRadius = 3.000000000000000000
+      end
+    end
+    object Label1: TLabel
+      Align = Client
+      StyledSettings = [FontColor]
+      Margins.Left = 20.000000000000000000
+      Margins.Top = 20.000000000000000000
+      Size.Width = 553.000000000000000000
+      Size.Height = 243.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Nexa'
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00020000000000000004000000}
+      TextSettings.VertAlign = Leading
+    end
+  end
+end

@@ -1,0 +1,98 @@
+unit frameCadastro;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Layouts, FMX.Controls.Presentation, FMX.Objects, FrameCadProduto;
+
+type
+  TFrameCadastros = class(TFrame)
+    RecTotal: TRectangle;
+    Rectop: TRectangle;
+    Label1: TLabel;
+    Layout1: TLayout;
+    Rectangle1: TRectangle;
+    Layout2: TLayout;
+    btnPro: TCornerButton;
+    CornerButton2: TCornerButton;
+    btnQuarto: TCornerButton;
+    btnCli: TCornerButton;
+    procedure btnProClick(Sender: TObject);
+    procedure CornerButton2Click(Sender: TObject);
+    procedure btnCliClick(Sender: TObject);
+    procedure btnQuartoClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    constructor create(_AOwner:TComponent); override;
+    procedure Release;
+
+  end;
+
+var
+  frameCad:TFrameCadastros;
+
+implementation
+
+uses
+  pousada, frameProd, FrameInicial, FrameQuarto,global,FrameCliente,
+  FrameMensagem;
+
+{$R *.fmx}
+
+procedure TFrameCadastros.btnCliClick(Sender: TObject);
+begin
+  frameClientes := TFrameCli.Create(FormTelaPrincipal);
+  Release;
+end;
+
+procedure TFrameCadastros.btnProClick(Sender: TObject);
+var
+  usu:tusuario;
+begin
+  usu := tusuario.GetInstance;
+  if (usu.funcao.ToUpper = 'ADMINISTRADOR') OR (usu.funcao.ToUpper = 'GERENTE') then
+  BEGIN
+    Release;
+    frameprods := TFrameProdutos.Create(FormTelaPrincipal);
+  END
+  else
+  begin
+    frameBO := TFrameAvI.Create(frameCad,'Aviso','Não permitido acesso');
+    exit;
+  end;
+end;
+
+procedure TFrameCadastros.btnQuartoClick(Sender: TObject);
+begin
+   FrameQuar := TFrameQuart.Create(FormTelaPrincipal);
+  Release;
+end;
+
+procedure TFrameCadastros.CornerButton2Click(Sender: TObject);
+begin
+  Release;
+  framePri := TFramePrincipal.Create(FormTelaPrincipal);
+end;
+
+constructor TFrameCadastros.Create(_AOwner: TComponent);
+begin
+  inherited;
+  Parent := TFmxObject(_AOwner);
+end;
+
+procedure TFrameCadastros.Release;
+begin
+  Name := '';
+
+  FreeOnRelease;
+  inherited;
+
+  frameCad := nil;
+end;
+
+
+end.

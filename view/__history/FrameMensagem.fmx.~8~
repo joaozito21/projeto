@@ -1,0 +1,97 @@
+object FrameMen: TFrameMen
+  Align = Center
+  Size.Width = 454.000000000000000000
+  Size.Height = 395.000000000000000000
+  Size.PlatformDefault = False
+  object RecTop: TRectangle
+    Align = MostTop
+    Fill.Color = claBlack
+    Size.Width = 454.000000000000000000
+    Size.Height = 65.000000000000000000
+    Size.PlatformDefault = False
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object lbTop: TLabel
+      Align = Client
+      StyledSettings = [Family, Size, Style]
+      Size.Width = 454.000000000000000000
+      Size.Height = 65.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+    end
+  end
+  object RectPrinc: TRectangle
+    Align = Client
+    Fill.Color = claWhite
+    Size.Width = 454.000000000000000000
+    Size.Height = 330.000000000000000000
+    Size.PlatformDefault = False
+    object LytLogin: TLayout
+      Align = VertCenter
+      Position.Y = 17.000000000000000000
+      Size.Width = 454.000000000000000000
+      Size.Height = 296.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object Layout4: TLayout
+        Align = Client
+        Size.Width = 454.000000000000000000
+        Size.Height = 246.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object LbMensagem: TLabel
+          Align = Client
+          StyledSettings = [FontColor]
+          Margins.Left = 20.000000000000000000
+          Margins.Top = 20.000000000000000000
+          Size.Width = 434.000000000000000000
+          Size.Height = 226.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Roboto'
+          TextSettings.Font.Size = 20.000000000000000000
+          TextSettings.Font.StyleExt = {00020000000000000004000000}
+          TextSettings.VertAlign = Leading
+        end
+      end
+      object Layout1: TLayout
+        Align = Bottom
+        Position.Y = 246.000000000000000000
+        Size.Width = 454.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object CornerButton1: TCornerButton
+          StyledSettings = [FontColor]
+          Position.X = 312.000000000000000000
+          Position.Y = 8.000000000000000000
+          Sides = [Top, Left, Bottom, Right]
+          Size.Width = 113.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'btnSalvar'
+          TabOrder = 0
+          Text = 'fechar'
+          TextSettings.Font.Family = 'Roboto'
+          TextSettings.Font.Size = 20.000000000000000000
+          TextSettings.Font.StyleExt = {00020000000000000004000000}
+          XRadius = 3.000000000000000000
+          YRadius = 3.000000000000000000
+          OnClick = CornerButton1Click
+        end
+        object CornerButton2: TCornerButton
+          Position.X = 200.000000000000000000
+          Position.Y = 8.000000000000000000
+          Sides = [Top, Left, Bottom, Right]
+          Size.Width = 97.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Confirma'
+          XRadius = 3.000000000000000000
+          YRadius = 3.000000000000000000
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,213 @@
+unit FrameReservaCad;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.ListBox, FMX.Edit, FMX.Layouts, FMX.Controls.Presentation, FMX.Objects,
+  FMX.DateTimeCtrls;
+
+type
+  TFrameCadReserva = class(TFrame)
+    Rectop: TRectangle;
+    Label1: TLabel;
+    CornerButton2: TCornerButton;
+    RecTotal: TRectangle;
+    Layout1: TLayout;
+    Rectangle1: TRectangle;
+    Layout2: TLayout;
+    Layout4: TLayout;
+    Label3: TLabel;
+    Layout7: TLayout;
+    CornerButton1: TCornerButton;
+    Layout8: TLayout;
+    Layout12: TLayout;
+    Label6: TLabel;
+    EdtNumPess: TEdit;
+    Layout11: TLayout;
+    Label5: TLabel;
+    Layout16: TLayout;
+    Label8: TLabel;
+    CmbNome: TComboBox;
+    EdtDataEnt: TDateEdit;
+    EdtDatSai: TDateEdit;
+    Label2: TLabel;
+    edtNumCri: TEdit;
+    Layout3: TLayout;
+    Label4: TLabel;
+    edtValor: TEdit;
+    procedure CornerButton1Click(Sender: TObject);
+    procedure EdtDatSaiExit(Sender: TObject);
+    procedure EdtDataEntExit(Sender: TObject);
+    procedure CornerButton2Click(Sender: TObject);
+    procedure edtNumCriKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+    procedure EdtNumPessKeyDown(Sender: TObject; var Key: Word;
+      var KeyChar: Char; Shift: TShiftState);
+    procedure edtValorKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    reserv:integer;
+    nomeCli:string;
+    modi:boolean;
+    id_reser :integer;
+    constructor create(_AOwner:TComponent;id_reserva:integer = 0;modif:boolean = false;dat:string=''); overload;
+    procedure Release;override;
+
+  end;
+
+var
+  FrameCadReser:TFrameCadReserva;
+
+implementation
+
+uses
+  bancoCliente, System.Generics.Collections,global, BancoReserva,
+  FrameQuartoControle, pousada, FrameMensagem;
+
+{$R *.fmx}
+
+procedure TFrameCadReserva.CornerButton1Click(Sender: TObject);
+var
+  id:integer;
+begin
+    if (not(EdtDatSai.Text = '__/__/____' )or not(EdtDatSai.Text.IsEmpty) and not(EdtNumPess.Text.IsEmpty)
+         and not(EdtDataEnt.Text = '__/__/____' )or not(EdtDataEnt.Text.IsEmpty)and (CmbNome.Items[CmbNome.ItemIndex] <>
+              'Selecione o nome do responsavel')) then
+   begin
+     with tcliente.Create(Owner) do
+        id:= pegarClienteporNome(CmbNome.Items[CmbNome.ItemIndex]);
+     with Treseva.create(Owner) do
+     begin
+       if modi then
+        mudanca_Reserva(EdtDataEnt.Text,EdtDatSai.Text,EdtNumPess.Text,edtNumCri.Text,edtValor.Text,id,reserv,id_reser)
+       else
+        inserir_Reserva(EdtDataEnt.Text,EdtDatSai.Text,EdtNumPess.Text,edtNumCri.Text,edtValor.Text,id,reserv);
+
+
+
+
+        Release;
+
+
+         FrameControl := TFrameControleQuarto.create(FormTelaPrincipal);
+     end;
+   end
+   else
+        frameAviso:=TFrameMen.create(FormTelaPrincipal,'AVISO','Campos nao preenchidos');
+end;
+
+procedure TFrameCadReserva.CornerButton2Click(Sender: TObject);
+begin
+   release;
+   FrameControl:= TFrameControleQuarto.create(FormTelaPrincipal);
+end;
+
+constructor TFrameCadReserva.Create(_AOwner: TComponent;id_reserva:integer;modif:boolean;dat:string);
+var
+  lista:TObjectList<Tclientes>;
+  listaReser: TObjectList<Treservas>;
+  I:integer;
+  id:integer;
+  nome:string;
+begin
+  inherited Create(Owner);
+  Parent := TFmxObject(_AOwner);
+  reserv := id_reserva;
+  modi := modif;
+   if modif then
+  begin
+    with Treseva.Create(self) do
+    begin
+      listaReser := pegarReserva(id_reserva,dat);
+      id_reserva :=  listaReser.Items[0].IdReserva;
+      EdtDataEnt.Text := listaReser.Items[0].DataEntrada;
+      EdtDatSai.Text  := listaReser.Items[0].DataSaida;
+      edtValor.text   :=listaReser.Items[0].valorDiaria;
+      EdtNumPess.Text  := listaReser.Items[0].numeroAdult.tostring();
+      edtNumCri.Text   := listaReser.Items[0].NumeroCri.tostring();
+      with tcliente.create(self) do
+      begin
+           nome  :=pegarClienteporId(listaReser.Items[0].Idcliente);
+           lista:=pegarClientes;
+           for I := 0 to lista.Count -1  do
+               CmbNome.Items.Add(lista.Items[I].Nome);
+           for I := 0 to lista.Count -1  do
+           begin
+                 if lista.Items[I].Nome = nome then
+                     id:=I;
+           end;
+           CmbNome.ItemIndex:=id;
+      end;
+
+    end;
+    reserv:= id_reserva;
+    exit;
+  end;
+  EdtDataEnt.Text:= dat;
+  EdtDatSai.Text := dat;
+  with tcliente.Create(self) do
+     lista:=pegarClientes;
+  CmbNome.Items.Add('Selecione o nome do responsavel');
+  for I := 0 to lista.Count -1  do
+     CmbNome.Items.Add(lista.Items[I].Nome);
+ if CmbNome.Items.Count > 0 then
+    CmbNome.ItemIndex := 0;
+end;
+
+function tbStrIsDate(const S: string): boolean;
+begin
+  try
+    StrToDate(S);
+    Result := true;
+  except
+    Result := false;
+  end;
+end;
+
+procedure TFrameCadReserva.edtNumCriKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+ verificarInteger(edtNumCri,KeyChar);
+end;
+
+procedure TFrameCadReserva.EdtNumPessKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+  verificarInteger(EdtNumPess,KeyChar);
+end;
+
+procedure TFrameCadReserva.edtValorKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+  verificarFloat(edtValor,KeyChar);
+end;
+
+procedure TFrameCadReserva.EdtDataEntExit(Sender: TObject);
+begin
+    if(tbStrIsDate(EdtDataEnt.Text)=false) or (EdtDataEnt.Text.IsEmpty)  then
+    EdtDataEnt.Text := '__/__/____';
+end;
+
+procedure TFrameCadReserva.EdtDatSaiExit(Sender: TObject);
+begin
+    if(tbStrIsDate(EdtDatSai.Text)=false) or (EdtDatSai.Text.IsEmpty)  then
+    EdtDatSai.Text := '__/__/____';
+end;
+
+procedure TFrameCadReserva.Release;
+begin
+  Name := '';
+
+  FreeOnRelease;
+  inherited;
+
+  FrameCadReser := nil;
+end;
+
+
+end.

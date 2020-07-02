@@ -1,0 +1,251 @@
+object FrameEstoque: TFrameEstoque
+  Align = Client
+  Size.Width = 1024.000000000000000000
+  Size.Height = 800.000000000000000000
+  Size.PlatformDefault = False
+  object Rectop: TRectangle
+    Align = Top
+    Fill.Color = claBlack
+    Size.Width = 1024.000000000000000000
+    Size.Height = 89.000000000000000000
+    Size.PlatformDefault = False
+    object Label1: TLabel
+      Align = Client
+      StyledSettings = []
+      Size.Width = 1024.000000000000000000
+      Size.Height = 89.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Roboto'
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00020000000000000004000000}
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'Estoque'
+      object btnVolta: TCornerButton
+        Align = Left
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 10.000000000000000000
+        Sides = [Top, Left, Bottom, Right]
+        Size.Width = 97.000000000000000000
+        Size.Height = 69.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'VOLTAR'
+        XRadius = 3.000000000000000000
+        YRadius = 3.000000000000000000
+        OnClick = btnVoltaClick
+      end
+    end
+  end
+  object RecTotal: TRectangle
+    Align = Client
+    Size.Width = 1024.000000000000000000
+    Size.Height = 711.000000000000000000
+    Size.PlatformDefault = False
+    object Layout1: TLayout
+      Align = Center
+      Size.Width = 710.000000000000000000
+      Size.Height = 370.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object Rectangle1: TRectangle
+        Align = Client
+        Fill.Color = claWhite
+        Size.Width = 710.000000000000000000
+        Size.Height = 370.000000000000000000
+        Size.PlatformDefault = False
+        object LvEstoque: TListView
+          ItemAppearanceClassName = 'TDynamicAppearance'
+          ItemEditAppearanceClassName = 'TDynamicAppearance'
+          HeaderAppearanceClassName = 'TListHeaderObjects'
+          FooterAppearanceClassName = 'TListHeaderObjects'
+          Align = Client
+          Size.Width = 710.000000000000000000
+          Size.Height = 287.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
+            item
+              AppearanceObjectName = 'nome'
+              AppearanceClassName = 'TTextObjectAppearance'
+              Appearance.TextAlign = Leading
+              Appearance.Width = 250.000000000000000000
+              Appearance.Height = 44.000000000000000000
+              Appearance.PlaceOffset.X = 88.000000000000000000
+            end
+            item
+              AppearanceObjectName = 'tipo'
+              AppearanceClassName = 'TTextObjectAppearance'
+              Appearance.TextAlign = Leading
+              Appearance.Width = 300.000000000000000000
+              Appearance.Height = 44.000000000000000000
+              Appearance.Visible = False
+              Appearance.PlaceOffset.X = 256.000000000000000000
+            end
+            item
+              AppearanceObjectName = 'data'
+              AppearanceClassName = 'TTextObjectAppearance'
+              Appearance.TextAlign = Leading
+              Appearance.Width = 150.000000000000000000
+              Appearance.Height = 44.000000000000000000
+              Appearance.Visible = False
+              Appearance.PlaceOffset.X = 296.000000000000000000
+            end
+            item
+              AppearanceObjectName = 'estoque'
+              AppearanceClassName = 'TTextObjectAppearance'
+              Appearance.TextAlign = Leading
+              Appearance.Width = 223.000000000000000000
+              Appearance.Height = 44.000000000000000000
+              Appearance.PlaceOffset.X = 416.000000000000000000
+            end
+            item
+              AppearanceObjectName = 'id'
+              AppearanceClassName = 'TTextObjectAppearance'
+              Appearance.TextAlign = Leading
+              Appearance.Width = 80.000000000000000000
+            end>
+          ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
+            item
+              AppearanceObjectName = 'Text1'
+              AppearanceClassName = 'TTextObjectAppearance'
+            end>
+          OnDblClick = LvEstoqueDblClick
+        end
+        object Layout2: TLayout
+          Align = Top
+          Margins.Left = 10.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 50.000000000000000000
+          Size.Width = 700.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          object Label2: TLabel
+            Align = Left
+            Margins.Right = 25.000000000000000000
+            Position.X = 85.000000000000000000
+            Size.Width = 308.000000000000000000
+            Size.Height = 33.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Nome'
+          end
+          object Label3: TLabel
+            Align = MostLeft
+            Margins.Right = 20.000000000000000000
+            Size.Width = 65.000000000000000000
+            Size.Height = 33.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'id'
+          end
+          object Label4: TLabel
+            Align = Client
+            Size.Width = 282.000000000000000000
+            Size.Height = 33.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Estoque'
+          end
+        end
+        object Layout3: TLayout
+          Align = MostTop
+          Size.Width = 710.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object Edit1: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Left
+            TabOrder = 0
+            Position.X = 129.000000000000000000
+            Position.Y = 10.000000000000000000
+            Margins.Top = 10.000000000000000000
+            Margins.Bottom = 10.000000000000000000
+            Size.Width = 257.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            OnKeyUp = Edit1KeyUp
+          end
+          object Layout4: TLayout
+            Align = MostLeft
+            Size.Width = 129.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            object Label5: TLabel
+              Align = Client
+              Size.Width = 129.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'busca nome do produto'
+            end
+          end
+        end
+      end
+    end
+  end
+  object cdEstoquePro: TClientDataSet
+    PersistDataPacket.Data = {
+      5A0000009619E0BD0100000018000000030000000000030000005A0002696404
+      00010000000000046E6F6D650100490000000100055749445448020002003200
+      076573746F71756501004900000001000557494454480200020014000000}
+    Active = True
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'nome'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'estoque'
+        DataType = ftString
+        Size = 20
+      end>
+    IndexDefs = <>
+    Params = <>
+    StoreDefs = True
+    Left = 432
+    Top = 184
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = cdEstoquePro
+    ScopeMappings = <>
+    Left = 512
+    Top = 200
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 68
+    Top = 133
+    object LinkFillControlToField1: TLinkFillControlToField
+      Category = 'Quick Bindings'
+      Control = LvEstoque
+      Track = True
+      FillDataSource = BindSourceDB1
+      AutoFill = True
+      FillExpressions = <
+        item
+          SourceMemberName = 'id'
+          ControlMemberName = 'id'
+        end
+        item
+          SourceMemberName = 'nome'
+          ControlMemberName = 'nome'
+        end
+        item
+          SourceMemberName = 'estoque'
+          ControlMemberName = 'estoque'
+        end>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+  end
+end

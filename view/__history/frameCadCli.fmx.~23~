@@ -1,0 +1,425 @@
+object FrameCadastroCli: TFrameCadastroCli
+  Align = Client
+  Size.Width = 1024.000000000000000000
+  Size.Height = 800.000000000000000000
+  Size.PlatformDefault = False
+  object Rectop: TRectangle
+    Align = Top
+    Fill.Color = claBlack
+    Size.Width = 1024.000000000000000000
+    Size.Height = 89.000000000000000000
+    Size.PlatformDefault = False
+    object Label1: TLabel
+      Align = Client
+      StyledSettings = []
+      Size.Width = 1024.000000000000000000
+      Size.Height = 89.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Roboto'
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00020000000000000004000000}
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'CADASTRO CLIENTE'
+      object CornerButton2: TCornerButton
+        Align = Left
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 10.000000000000000000
+        Sides = [Top, Left, Bottom, Right]
+        Size.Width = 97.000000000000000000
+        Size.Height = 69.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'VOLTAR'
+        XRadius = 3.000000000000000000
+        YRadius = 3.000000000000000000
+        OnClick = CornerButton2Click
+      end
+    end
+  end
+  object RecTotal: TRectangle
+    Align = Client
+    Size.Width = 1024.000000000000000000
+    Size.Height = 711.000000000000000000
+    Size.PlatformDefault = False
+    object Layout1: TLayout
+      Align = Center
+      Size.Width = 900.000000000000000000
+      Size.Height = 600.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object Rectangle1: TRectangle
+        Align = Client
+        Fill.Color = claWhite
+        Padding.Left = 20.000000000000000000
+        Size.Width = 900.000000000000000000
+        Size.Height = 600.000000000000000000
+        Size.PlatformDefault = False
+        object Layout2: TLayout
+          Align = Top
+          Position.X = 20.000000000000000000
+          Size.Width = 880.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object Layout4: TLayout
+            Align = Top
+            Margins.Top = 10.000000000000000000
+            Position.Y = 10.000000000000000000
+            Size.Width = 880.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object EdtNome: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 1
+              MaxLength = 100
+              TextSettings.Font.Family = 'Roboto'
+              TextSettings.Font.Size = 25.000000000000000000
+              TextSettings.Font.StyleExt = {00020000000000000004000000}
+              Margins.Left = 30.000000000000000000
+              Margins.Right = 30.000000000000000000
+              Size.Width = 611.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              StyledSettings = [FontColor]
+            end
+            object Label3: TLabel
+              StyleName = 'Lbstyle'
+              Align = Left
+              StyledSettings = [FontColor]
+              Size.Width = 209.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Family = 'Roboto'
+              TextSettings.Font.Size = 25.000000000000000000
+              TextSettings.Font.StyleExt = {00020000000000000004000000}
+              Text = 'Nome do cliente'
+            end
+          end
+        end
+        object Layout3: TLayout
+          Align = Top
+          Position.X = 20.000000000000000000
+          Position.Y = 360.000000000000000000
+          Size.Width = 880.000000000000000000
+          Size.Height = 45.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          object edtData: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Left
+            TabOrder = 0
+            MaxLength = 20
+            Text = '__/__/____'
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 25.000000000000000000
+            TextSettings.Font.StyleExt = {00020000000000000004000000}
+            Position.X = 279.000000000000000000
+            Margins.Left = 30.000000000000000000
+            Margins.Right = 30.000000000000000000
+            Size.Width = 200.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            StyledSettings = [FontColor]
+            OnExit = edtDataExit
+          end
+          object LbValor: TLabel
+            Align = Left
+            StyledSettings = [FontColor]
+            Size.Width = 249.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 25.000000000000000000
+            TextSettings.Font.StyleExt = {00020000000000000004000000}
+            Text = 'Data de nascimento'
+          end
+        end
+        object Layout7: TLayout
+          Align = Bottom
+          Position.X = 20.000000000000000000
+          Position.Y = 472.000000000000000000
+          Size.Width = 880.000000000000000000
+          Size.Height = 128.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object CornerButton1: TCornerButton
+            StyledSettings = [FontColor]
+            Position.X = 208.000000000000000000
+            Position.Y = 32.000000000000000000
+            Sides = [Top, Left, Bottom, Right]
+            Size.Width = 289.000000000000000000
+            Size.Height = 73.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'btnSalvar'
+            TabOrder = 0
+            Text = 'Salvar'
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 25.000000000000000000
+            TextSettings.Font.StyleExt = {00020000000000000004000000}
+            XRadius = 3.000000000000000000
+            YRadius = 3.000000000000000000
+            OnClick = CornerButton1Click
+          end
+        end
+        object Layout5: TLayout
+          Align = Top
+          Margins.Top = 10.000000000000000000
+          Position.X = 20.000000000000000000
+          Position.Y = 415.000000000000000000
+          Size.Width = 880.000000000000000000
+          Size.Height = 58.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          object Layout6: TLayout
+            Align = Top
+            Size.Width = 880.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Label2: TLabel
+              Align = Left
+              StyledSettings = [FontColor]
+              Size.Width = 249.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Family = 'Roboto'
+              TextSettings.Font.Size = 25.000000000000000000
+              TextSettings.Font.StyleExt = {00020000000000000004000000}
+              Text = 'Endere'#231'o do cliente'
+            end
+            object EdtEnd: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 1
+              MaxLength = 20
+              TextSettings.Font.Family = 'Roboto'
+              TextSettings.Font.Size = 25.000000000000000000
+              TextSettings.Font.StyleExt = {00020000000000000004000000}
+              Margins.Left = 30.000000000000000000
+              Margins.Right = 30.000000000000000000
+              Size.Width = 571.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              StyledSettings = [FontColor]
+            end
+          end
+        end
+        object Layout8: TLayout
+          Align = Top
+          Position.X = 20.000000000000000000
+          Position.Y = 295.000000000000000000
+          Size.Width = 880.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+          object Layout9: TLayout
+            Align = Top
+            Size.Width = 880.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Label4: TLabel
+              Align = Left
+              StyledSettings = [FontColor]
+              Size.Width = 249.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Family = 'Roboto'
+              TextSettings.Font.Size = 25.000000000000000000
+              TextSettings.Font.StyleExt = {00020000000000000004000000}
+              Text = 'Telefone do cliente'
+            end
+            object EdtTel: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 1
+              MaxLength = 20
+              TextSettings.Font.Family = 'Roboto'
+              TextSettings.Font.Size = 25.000000000000000000
+              TextSettings.Font.StyleExt = {00020000000000000004000000}
+              Margins.Left = 30.000000000000000000
+              Margins.Right = 30.000000000000000000
+              Size.Width = 571.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              StyledSettings = [FontColor]
+              OnKeyDown = EdtTelKeyDown
+            end
+          end
+        end
+        object Layout12: TLayout
+          Align = Top
+          Position.X = 20.000000000000000000
+          Position.Y = 230.000000000000000000
+          Size.Width = 880.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+          object Layout13: TLayout
+            Align = Top
+            Size.Width = 880.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Label6: TLabel
+              Align = Left
+              StyledSettings = [FontColor]
+              Size.Width = 249.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Family = 'Roboto'
+              TextSettings.Font.Size = 25.000000000000000000
+              TextSettings.Font.StyleExt = {00020000000000000004000000}
+              Text = 'Cidade do cliente'
+            end
+            object Edtcid: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 1
+              MaxLength = 20
+              TextSettings.Font.Family = 'Roboto'
+              TextSettings.Font.Size = 25.000000000000000000
+              TextSettings.Font.StyleExt = {00020000000000000004000000}
+              Margins.Left = 30.000000000000000000
+              Margins.Right = 30.000000000000000000
+              Size.Width = 571.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              StyledSettings = [FontColor]
+            end
+          end
+        end
+        object Layout11: TLayout
+          Align = Top
+          Position.X = 20.000000000000000000
+          Position.Y = 185.000000000000000000
+          Size.Width = 880.000000000000000000
+          Size.Height = 45.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 6
+          object Label5: TLabel
+            Align = Left
+            StyledSettings = [FontColor]
+            Size.Width = 249.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 25.000000000000000000
+            TextSettings.Font.StyleExt = {00020000000000000004000000}
+            Text = 'Estado do cliente'
+          end
+          object Edtest: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Client
+            TabOrder = 1
+            MaxLength = 20
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 25.000000000000000000
+            TextSettings.Font.StyleExt = {00020000000000000004000000}
+            Margins.Left = 30.000000000000000000
+            Margins.Right = 30.000000000000000000
+            Size.Width = 571.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            StyledSettings = [FontColor]
+          end
+        end
+        object Layout16: TLayout
+          Align = Top
+          Position.X = 20.000000000000000000
+          Position.Y = 140.000000000000000000
+          Size.Width = 880.000000000000000000
+          Size.Height = 45.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 7
+          object Label8: TLabel
+            Align = Left
+            StyledSettings = [FontColor]
+            Size.Width = 249.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 25.000000000000000000
+            TextSettings.Font.StyleExt = {00020000000000000004000000}
+            Text = 'Email do cliente'
+          end
+          object EdtEmail: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Client
+            TabOrder = 1
+            MaxLength = 20
+            TextSettings.Font.Family = 'Roboto'
+            TextSettings.Font.Size = 25.000000000000000000
+            TextSettings.Font.StyleExt = {00020000000000000004000000}
+            Margins.Left = 30.000000000000000000
+            Margins.Right = 30.000000000000000000
+            Size.Width = 571.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            StyledSettings = [FontColor]
+          end
+        end
+        object LytBr: TLayout
+          Align = Top
+          Margins.Top = 10.000000000000000000
+          Position.X = 20.000000000000000000
+          Position.Y = 75.000000000000000000
+          Size.Width = 880.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 8
+          object lytRb: TLayout
+            Align = Top
+            Size.Width = 880.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Label7: TLabel
+              Align = Left
+              StyledSettings = [FontColor]
+              Size.Width = 281.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Family = 'Roboto'
+              TextSettings.Font.Size = 25.000000000000000000
+              TextSettings.Font.StyleExt = {00020000000000000004000000}
+              Text = 'Inativar  cliente'
+            end
+            object RbInaSim: TRadioButton
+              Align = Left
+              StyledSettings = [FontColor]
+              GroupName = 'inativar'
+              Position.X = 281.000000000000000000
+              Size.Width = 152.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              Text = 'Sim'
+              TextSettings.Font.Family = 'Roboto'
+              TextSettings.Font.Size = 25.000000000000000000
+              TextSettings.Font.StyleExt = {00020000000000000004000000}
+            end
+            object RbinaNao: TRadioButton
+              Align = Client
+              StyledSettings = [Family, FontColor]
+              GroupName = 'inativar'
+              Size.Width = 447.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+              Text = 'N'#227'o'
+              TextSettings.Font.Size = 25.000000000000000000
+              TextSettings.Font.StyleExt = {00020000000000000004000000}
+            end
+          end
+        end
+      end
+    end
+  end
+end

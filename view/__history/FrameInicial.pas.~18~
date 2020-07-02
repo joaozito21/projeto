@@ -1,0 +1,99 @@
+unit FrameInicial;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Objects, FMX.Layouts, FMX.Controls.Presentation, frameCadastro;
+
+type
+  TFramePrincipal = class(TFrame)
+    RecPrincipal: TRectangle;
+    Rectangle1: TRectangle;
+    Label1: TLabel;
+    Layout1: TLayout;
+    Layout2: TLayout;
+    Image1: TImage;
+    Label2: TLabel;
+    Layout3: TLayout;
+    Image2: TImage;
+    Label3: TLabel;
+    Layout4: TLayout;
+    Image3: TImage;
+    Label4: TLabel;
+    CornerButton1: TCornerButton;
+    Label5: TLabel;
+    procedure Label2Click(Sender: TObject);
+    procedure Image1Click(Sender: TObject);
+    procedure Image3Click(Sender: TObject);
+    procedure Image2Click(Sender: TObject);
+    procedure CornerButton1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+      constructor create(_AOwner:TComponent); override;
+        procedure Release;
+  end;
+var
+  FramePri:TFramePrincipal;
+
+implementation
+
+uses
+  pousada, frameProd, FrameEstoquePro, frameMovimentacaoEstoque,
+  FrameQuartoControle, framelgin,global;
+
+{$R *.fmx}
+
+procedure TFramePrincipal.CornerButton1Click(Sender: TObject);
+begin
+        Release;
+       frameLogin:= TFrameLogin.Create(FormTelaPrincipal.LytInicio);
+end;
+
+constructor TFramePrincipal.Create(_AOwner: TComponent);
+var
+  usuario:tusuario;
+begin
+  inherited;
+  Parent := TFmxObject(_AOwner);
+  usuario :=TUsuario.GetInstance;
+end;
+
+procedure TFramePrincipal.Image1Click(Sender: TObject);
+begin
+  release;
+  Framecad :=TFrameCadastros.Create(FormTelaPrincipal);
+end;
+
+procedure TFramePrincipal.Image2Click(Sender: TObject);
+begin
+   FrameControl:= TFrameControleQuarto.create(FormTelaPrincipal);
+   release;
+end;
+
+procedure TFramePrincipal.Image3Click(Sender: TObject);
+begin
+   frameMovi :=TFrameEsto.Create(FormTelaPrincipal);
+   Release;
+end;
+
+procedure TFramePrincipal.Label2Click(Sender: TObject);
+begin
+  Framecad :=TFrameCadastros.Create(FormTelaPrincipal);
+  release;
+end;
+
+procedure TFramePrincipal.Release;
+begin
+  Name := '';
+
+  FreeOnRelease;
+  inherited;
+
+  FramePri := nil;
+end;
+
+end.

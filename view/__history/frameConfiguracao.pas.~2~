@@ -1,0 +1,35 @@
+unit frameConfiguracao;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Edit, FMX.Layouts, FMX.Controls.Presentation, FMX.Objects;
+
+type
+  TFrameconf = class(TFrame)
+    RecTop: TRectangle;
+    lbTop: TLabel;
+    RectPrinc: TRectangle;
+    LytLogin: TLayout;
+    Layout4: TLayout;
+    LbMensagem: TLabel;
+    Layout1: TLayout;
+    CornerButton1: TCornerButton;
+    Layout2: TLayout;
+    Label1: TLabel;
+    Edit1: TEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+       constructor create(_AOwner:TComponent); override;
+        procedure Release;
+  end;
+
+implementation
+
+{$R *.fmx}
+
+end.

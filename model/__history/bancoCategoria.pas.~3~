@@ -1,0 +1,53 @@
+unit bancoCategoria;
+
+interface
+
+uses
+  System.Generics.Collections, System.Classes;
+  type
+       Tcategoria = class (tcomponent)
+            public
+            descricao:string;
+            idCategoria:integer;
+            function pegarCategoria:TObjectList<Tcategoria>;
+
+       end;
+
+implementation
+
+uses
+  FireDAC.Comp.Client,global;
+
+function Tcategoria.pegarCategoria:TObjectList<Tcategoria>;
+var
+  qry:TFDQuery;
+  listaCategoria:TObjectList<Tcategoria>;
+  Categoria:Tcategoria;
+begin
+    qry := TFDQuery.Create(self);
+    with qry do
+    begin
+      qry.Connection := FDConnection;
+      with qry.SQL do
+      begin
+        add('SELECT id,descricao FROM pousada.categorias;');
+      end;
+      listaCategoria:= TObjectList<Tcategoria>.create;
+      open;
+
+      while not EOF do
+      begin
+        Categoria:= Tcategoria.create(self);
+         Categoria.descricao := FieldByName('descricao').AsString;
+       Categoria.idCategoria :=FieldByName('idCategoria').AsInteger;
+        listaCategoria.Add(Categoria);
+        next;
+      end;
+
+      qry.Close;
+    end;
+    FDConnection.Close;
+    Result := listaCategoria;
+end;
+
+end.

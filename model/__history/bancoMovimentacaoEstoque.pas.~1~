@@ -1,0 +1,40 @@
+unit bancoMovimentacaoEstoque;
+
+interface
+
+uses
+  System.Classes;
+    type
+    tmovimentacao=class(tcomponent)
+       procedure inserir_movimentacao(id_produto,quantidade,motivo:string);
+
+    end;
+
+implementation
+
+uses
+  FireDAC.Comp.Client,global;
+
+procedure tmovimentacao.inserir_movimentacao(id_produto,quantidade,motivo:string);
+var
+  qry:TFDQuery;
+begin
+    qry := TFDQuery.Create(self);
+    with qry do
+    begin
+      qry.Connection := FDConnection;
+      with qry.SQL do
+      begin
+        add('insert into quarto(numero,tipo)values(:num,:tipo)');
+        ParamByName('num').AsString := numero;
+        ParamByName('tipo').Asstring :=tipo;
+      end;
+      ExecSQL;
+
+      qry.Close;
+    end;
+    FDConnection.Close;
+end;
+
+
+end.

@@ -1,0 +1,98 @@
+unit bancoQuarto;
+
+interface
+
+uses
+  System.Classes, System.Generics.Collections,global;
+  type
+    tquarto= class(tcomponent)
+        public
+          function pegarQuartos :TObjectList<tquartos> ;
+          procedure inserir_quarto(numero,tipo:string);
+          procedure alterar_quarto(numero,tipo:string;id:integer);
+    end;
+
+implementation
+
+uses
+  FireDAC.Comp.Client, System.SysUtils;
+
+function tquarto.pegarQuartos :TObjectList<tquartos> ;
+var
+  qry:TFDQuery;
+  listaQuartos:TObjectList<Tquartos>;
+  quartos:tquartos;
+begin
+    qry := TFDQuery.Create(self);
+    with qry do
+    begin
+      qry.Connection := FDConnection;
+      with qry.SQL do
+      begin
+        add('select idquarto,Numero from quarto');
+      end;
+      listaQuartos:= TObjectList<tquartos>.create;
+      open;
+
+      while not EOF do
+      begin
+        quartos := tquartos.create;
+        quartos.idQuarto := FieldByName('idquarto').AsInteger;
+        quartos.numero:=FieldByName('Numero').AsInteger;
+        quartos.status := 'DISPONIVEL';
+        listaQuartos.Add(quartos);
+        next;
+      end;
+
+      qry.Close;
+    end;
+    FDConnection.Close;
+    Result := listaQuartos;
+end;
+
+
+procedure tquarto.inserir_quarto(numero,tipo:string);
+var
+  qry:TFDQuery;
+begin
+    qry := TFDQuery.Create(self);
+    with qry do
+    begin
+      qry.Connection := FDConnection;
+      with qry.SQL do
+      begin
+        add('insert into quarto(numero,tipo)values(:num,:tipo)');
+        ParamByName('num').AsString := numero;
+        ParamByName('tipo').Asstring :=tipo;
+      end;
+      ExecSQL;
+
+      qry.Close;
+    end;
+    FDConnection.Close;
+end;
+
+procedure tquarto.alterar_quarto(numero,tipo:string;id:integer);
+var
+  qry:TFDQuery;
+begin
+    qry := TFDQuery.Create(self);
+    with qry do
+    begin
+      qry.Connection := FDConnection;
+      with qry.SQL do
+      begin
+        add('update quarto set numero= :num,tipo=:tipo  where idquarto = :id');
+        ParamByName('id').AsInteger :=id;
+        ParamByName('num').AsString := numero;
+        ParamByName('tipo').Asstring := tipo;
+      end;
+      ExecSQL;
+
+      qry.Close;
+    end;
+    FDConnection.Close;
+end;
+
+
+end.

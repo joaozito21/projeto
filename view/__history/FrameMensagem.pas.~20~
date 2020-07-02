@@ -1,0 +1,44 @@
+unit FrameMensagem;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Layouts, FMX.Controls.Presentation, FMX.Objects;
+
+type
+  TFrameMen = class(TFrame)
+    RecTop: TRectangle;
+    lbTop: TLabel;
+    RectPrinc: TRectangle;
+    LytLogin: TLayout;
+    Layout4: TLayout;
+    Layout1: TLayout;
+    LbMensagem: TLabel;
+    CornerButton1: TCornerButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    constructor create(_AOwner:TComponent;mentop,mensagem:string);overload;
+     procedure Release;override;
+  end;
+
+var
+  frameAviso:TFrameMen;
+
+implementation
+
+
+{$R *.fmx}
+
+constructor TFrameMen.Create(_AOwner: TComponent;mentop,mensagem:string);
+begin
+  inherited;
+  Parent := TFmxObject(_AOwner);
+  lbTop.Text := mentop;
+  LbMensagem.Text := mensagem;
+end;
+
+end.

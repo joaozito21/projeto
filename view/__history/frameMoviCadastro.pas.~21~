@@ -1,0 +1,88 @@
+unit frameMoviCadastro;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.ScrollBox, FMX.Memo, FMX.Edit, FMX.Layouts, FMX.Controls.Presentation,
+  FMX.Objects, FMX.ListBox;
+
+type
+  TFrameCadMoviEstoque = class(TFrame)
+    Rectop: TRectangle;
+    Label1: TLabel;
+    CornerButton2: TCornerButton;
+    RecTotal: TRectangle;
+    Layout1: TLayout;
+    Rectangle1: TRectangle;
+    Layout2: TLayout;
+    Layout4: TLayout;
+    Label3: TLabel;
+    Layout3: TLayout;
+    LbValor: TLabel;
+    Layout7: TLayout;
+    CornerButton1: TCornerButton;
+    MemMotivo: TMemo;
+    Cmbquant: TComboBox;
+    procedure CornerButton1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+      pro_id:integer;
+     constructor create(_AOwner:TComponent;id_pro:integer;quant:integer = 0);overload;
+    procedure Release;override;
+  end;
+
+var
+  frameMoviCad:TFrameCadMoviEstoque;
+
+implementation
+
+uses
+  bancoMovimentacaoEstoque, frameMovimentacaoEstoque, pousada;
+
+{$R *.fmx}
+
+
+procedure TFrameCadMoviEstoque.Release;
+begin
+  Name := '';
+
+  FreeOnRelease;
+  inherited;
+
+  frameMoviCad := nil;
+end;
+
+procedure TFrameCadMoviEstoque.CornerButton1Click(Sender: TObject);
+var
+  index:integer;
+begin
+  if not(Cmbquant.Items.Text.IsEmpty) and not(MemMotivo.Text.IsEmpty) then
+  begin
+    with tmovimentacao.Create(self) do
+    begin
+      index := Cmbquant.Index;
+      inserir_movimentacao(pro_id.ToString,Cmbquant.Items[index],MemMotivo.Text);
+    end;
+    Release;
+    frameMovi:= TFrameEsto.Create(FormTelaPrincipal);
+  end;
+end;
+
+constructor TFrameCadMoviEstoque.Create(_AOwner: TComponent;id_pro:integer;quant:integer);
+var
+  I:integer;
+begin
+  inherited create(_AOwner);
+  Parent := TFmxObject(_AOwner);
+  pro_id   := id_pro;
+  for  I := 1 to quant do
+       Cmbquant.Items.Add((I).ToString);
+  Cmbquant.ItemIndex := 0;
+  //dadosEstoque;
+end;
+
+end.
